@@ -1,50 +1,123 @@
-# React + TypeScript + Vite
+# HabitGrid
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A beautiful habit tracking app with grid, list, monthly, and yearly views. Built with React, TypeScript, Vite, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 📊 **Grid View**: Weekly habit tracking grid
+- 📋 **Habits List**: Detailed list view with statistics
+- 📅 **Monthly View**: Monthly calendar with completion tracking
+- 📈 **Yearly View**: Annual overview with heatmap visualization
+- 🎯 **Habit Planning**: Schedule habits with time, days, duration, and description
+- 🔥 **Streak Tracking**: Smart streak calculation based on planned days
+- 💾 **Local Storage**: All data stored locally in your browser
+- 📱 **Responsive Design**: Works on mobile, tablet, and desktop
 
-## Expanding the ESLint configuration
+## Development
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
 
-- Configure the top-level `parserOptions` property like this:
+- Node.js 18+ 
+- npm or yarn
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Installation
+
+```bash
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Development Server
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm run dev
 ```
+
+### Build
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub/GitLab/Bitbucket
+2. Go to [Vercel](https://vercel.com) and sign in
+3. Click "New Project" and import your repository
+4. Vercel will automatically detect Vite and configure the build settings
+5. Click "Deploy"
+
+The `vercel.json` file is already configured for this project.
+
+### Netlify
+
+1. Push your code to GitHub/GitLab/Bitbucket
+2. Go to [Netlify](https://netlify.com) and sign in
+3. Click "New site from Git" and select your repository
+4. Configure build settings:
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+5. Click "Deploy site"
+
+### GitHub Pages
+
+1. Update `vite.config.ts` to include base path:
+   ```typescript
+   export default defineConfig({
+     base: '/your-repo-name/',
+     // ... rest of config
+   })
+   ```
+
+2. Create `.github/workflows/deploy.yml`:
+   ```yaml
+   name: Deploy to GitHub Pages
+   on:
+     push:
+       branches: [ main ]
+   jobs:
+     build-and-deploy:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v3
+         - uses: actions/setup-node@v3
+           with:
+             node-version: '18'
+         - run: npm install
+         - run: npm run build
+         - uses: peaceiris/actions-gh-pages@v3
+           with:
+             github_token: ${{ secrets.GITHUB_TOKEN }}
+             publish_dir: ./dist
+   ```
+
+### Cloudflare Pages
+
+1. Push your code to GitHub/GitLab
+2. Go to [Cloudflare Pages](https://pages.cloudflare.com) and sign in
+3. Click "Create a project" and connect your repository
+4. Configure build settings:
+   - Framework preset: Vite
+   - Build command: `npm run build`
+   - Build output directory: `dist`
+5. Click "Save and Deploy"
+
+## Tech Stack
+
+- **React 18**: UI framework
+- **TypeScript**: Type safety
+- **Vite**: Build tool and dev server
+- **Tailwind CSS**: Styling
+- **Radix UI**: Accessible component primitives
+- **Lucide React**: Icons
+
+## License
+
+MIT

@@ -10,6 +10,13 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+  			ivory: {
+  				DEFAULT: '#FFFFF0',
+  				50: '#FFFFF5',
+  				100: '#FFFFF0',
+  				200: '#FEFEF0',
+  				300: '#F5F5DC'
+  			},
   			sidebar: {
   				DEFAULT: 'hsl(var(--sidebar-background))',
   				foreground: 'hsl(var(--sidebar-foreground))',

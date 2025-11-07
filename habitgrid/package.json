@@ -1,7 +1,8 @@
 {
   "name": "habitgrid",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A beautiful habit tracking app with grid, list, monthly, and yearly views",
   "type": "module",
   "scripts": {
     "dev": "vite",

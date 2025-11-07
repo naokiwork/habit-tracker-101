@@ -1,6 +1,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 7-Segment Display Font */
+@font-face {
+  font-family: 'DSEG7';
+  src: url('https://cdn.jsdelivr.net/gh/keshikan/DSEG@master/fonts/DSEG7-Classic/DSEG7Classic-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/keshikan/DSEG@master/fonts/DSEG7-Classic/DSEG7Classic-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Striped/Inline Font Effect - Multiple parallel lines */
+.striped-font {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #1D1D1F;
+  text-stroke: 1.5px #1D1D1F;
+  position: relative;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-shadow: 
+    /* Create multiple parallel lines effect */
+    /* Vertical offset lines */
+    0 0 0 #1D1D1F,
+    0 0.8px 0 #1D1D1F,
+    0 1.6px 0 #1D1D1F,
+    0 2.4px 0 #1D1D1F,
+    0 3.2px 0 #1D1D1F,
+    /* Horizontal offset lines for depth */
+    0.4px 0 0 #1D1D1F,
+    0.4px 0.8px 0 #1D1D1F,
+    0.4px 1.6px 0 #1D1D1F,
+    0.4px 2.4px 0 #1D1D1F,
+    0.4px 3.2px 0 #1D1D1F,
+    /* Additional layer */
+    0.8px 0 0 #1D1D1F,
+    0.8px 0.8px 0 #1D1D1F,
+    0.8px 1.6px 0 #1D1D1F,
+    0.8px 2.4px 0 #1D1D1F,
+    0.8px 3.2px 0 #1D1D1F,
+    /* Final layer */
+    1.2px 0 0 #1D1D1F,
+    1.2px 0.8px 0 #1D1D1F,
+    1.2px 1.6px 0 #1D1D1F,
+    1.2px 2.4px 0 #1D1D1F,
+    1.2px 3.2px 0 #1D1D1F;
+}
+
 @layer base {
   :root {
     --radius: 0.5rem

@@ -1,50 +1,42 @@
-# React + TypeScript + Vite
+# Habit Tracker 101
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+習慣トラッキングアプリ「HabitGrid」のリポジトリです。
 
-Currently, two official plugins are available:
+## プロジェクト構造
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```
+habit-tracker-101/
+├── habitgrid/          # メインアプリケーション
+│   ├── src/           # ソースコード
+│   ├── public/        # 静的ファイル
+│   └── ...            # 設定ファイル
+└── README.md          # このファイル
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## セットアップ
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+cd habitgrid
+npm install
+npm run dev
 ```
+
+## 機能
+
+- 習慣の作成と管理
+- 週単位での進捗トラッキング
+- ストリーク（連続日数）のカウント
+- 時間帯に応じた背景色の変更（午前3時〜午後3時: アイボリー、それ以外: グレー）
+- バックアップ・復元機能
+- 統計データのエクスポート（CSV/JSON）
+- 印刷機能
+- 目標達成通知
+- 習慣の履歴管理
+
+## 技術スタック
+
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui

@@ -1,0 +1,70 @@
+{
+  "app": {
+    "title": "HabitGrid",
+    "subtitle": "勢いを築く。一度に一つのチェック。"
+  },
+  "common": {
+    "add": "追加",
+    "edit": "編集",
+    "delete": "削除",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "close": "閉じる",
+    "back": "戻る",
+    "next": "次へ",
+    "previous": "前へ",
+    "today": "今日",
+    "print": "印刷",
+    "export": "エクスポート",
+    "import": "インポート",
+    "search": "検索",
+    "filter": "フィルター",
+    "clear": "クリア",
+    "all": "すべて"
+  },
+  "habit": {
+    "name": "習慣名",
+    "emoji": "絵文字",
+    "color": "色",
+    "category": "カテゴリ",
+    "tags": "タグ",
+    "description": "説明",
+    "goalType": "目標タイプ",
+    "goalValue": "目標値",
+    "reminder": "リマインダー",
+    "addHabit": "習慣を追加",
+    "editHabit": "習慣を編集",
+    "deleteHabit": "習慣を削除",
+    "archiveHabit": "習慣をアーカイブ",
+    "restoreHabit": "習慣を復元",
+    "completed": "完了",
+    "notCompleted": "未完了",
+    "skipped": "スキップ"
+  },
+  "stats": {
+    "title": "統計",
+    "completionRate": "完了率",
+    "streak": "連続日数",
+    "totalDays": "合計日数",
+    "last7Days": "過去7日",
+    "last30Days": "過去30日",
+    "last90Days": "過去90日",
+    "lastYear": "過去1年",
+    "custom": "カスタム"
+  },
+  "backup": {
+    "title": "バックアップ管理",
+    "createBackup": "バックアップを作成",
+    "restore": "復元",
+    "export": "エクスポート",
+    "delete": "削除",
+    "preview": "プレビュー"
+  },
+  "settings": {
+    "title": "設定",
+    "language": "言語",
+    "theme": "テーマ",
+    "notifications": "通知"
+  }
+}
+

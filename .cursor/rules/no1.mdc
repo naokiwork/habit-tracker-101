@@ -1,0 +1,39 @@
+---
+alwaysApply: true
+---
+
+# Project Behavior Rules（Stable Auto-Loop with Task Control）
+
+## Agent A（Tab A）
+role: "Product Designer / Planner"
+
+rules:
+  - PROPOSALS.md を読み取り、最上段に新しい提案を追記する
+  - 提案には必ず「Implementation Steps」を付与し、Tab B がすぐ実装できる形に仕上げる
+  - 新規提案は必ず "## NEW PROPOSAL" の見出しを付ける
+  - 未完了タスク（DONE が付いていない proposal）が **10件以上** の場合：
+      - 新規提案の生成を停止する
+      - PROPOSALS.md の最上段に  
+        "**Status: TOO MANY TASKS — Waiting for B to process**"  
+        を書いて終了する
+  - 未完了タスクが **9件以下** に戻った場合、自動で提案生成を再開する
+
+## Agent B（Tab B）
+role: "Implementer / Engineer"
+
+rules:
+  - PROPOSALS.md の最上段にある "## NEW PROPOSAL" を常に最優先で実装する
+  - 必要であれば修正方針・追加コード・移植作業を自律生成して進める
+  - エラーがあれば原因分析 → 修正案生成 → 再実行のループを自律で行う
+  - 完了した提案には `[DONE]` を付けて PROPOSALS.md に反映する
+  - 未完了タスクが **10件以上** の場合：
+      - 新規実装を停止し  
+        "**Status: TOO MANY TASKS — Pausing Implementation**"  
+        とコメントして終了する
+
+## Shared Rules
+rules:
+  - Tab A と Tab B は PROPOSALS.md を通信媒体として協調する
+  - 不要な会話は生成せず、実行に必要な情報と結果だけを出力する
+  - 仕様が不明な場合、B → A の方向に Clarification を求めて同期する
+  - 「A → B → A → B」の改善循環ワークフローを継続させる（ただし Task 制限を尊重）

@@ -1,0 +1,70 @@
+{
+  "app": {
+    "title": "HabitGrid",
+    "subtitle": "Build momentum. One check at a time."
+  },
+  "common": {
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "today": "Today",
+    "print": "Print",
+    "export": "Export",
+    "import": "Import",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear",
+    "all": "All"
+  },
+  "habit": {
+    "name": "Habit Name",
+    "emoji": "Emoji",
+    "color": "Color",
+    "category": "Category",
+    "tags": "Tags",
+    "description": "Description",
+    "goalType": "Goal Type",
+    "goalValue": "Goal Value",
+    "reminder": "Reminder",
+    "addHabit": "Add Habit",
+    "editHabit": "Edit Habit",
+    "deleteHabit": "Delete Habit",
+    "archiveHabit": "Archive Habit",
+    "restoreHabit": "Restore Habit",
+    "completed": "Completed",
+    "notCompleted": "Not Completed",
+    "skipped": "Skipped"
+  },
+  "stats": {
+    "title": "Statistics",
+    "completionRate": "Completion Rate",
+    "streak": "Streak",
+    "totalDays": "Total Days",
+    "last7Days": "Last 7 Days",
+    "last30Days": "Last 30 Days",
+    "last90Days": "Last 90 Days",
+    "lastYear": "Last Year",
+    "custom": "Custom"
+  },
+  "backup": {
+    "title": "Backup Management",
+    "createBackup": "Create Backup",
+    "restore": "Restore",
+    "export": "Export",
+    "delete": "Delete",
+    "preview": "Preview"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "notifications": "Notifications"
+  }
+}
+

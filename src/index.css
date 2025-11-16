@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Print styles */
+@media print {
+  /* Hide non-essential elements */
+  header,
+  button:not(.print-visible),
+  .no-print,
+  nav,
+  [role="banner"],
+  [role="navigation"] {
+    display: none !important;
+  }
+
+  /* Optimize layout for printing */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .bg-white,
+  .bg-gray-50,
+  .bg-zinc-900,
+  .bg-zinc-800 {
+    background: white !important;
+  }
+
+  .text-gray-600,
+  .text-gray-500,
+  .text-zinc-400,
+  .text-zinc-300,
+  .text-zinc-50 {
+    color: black !important;
+  }
+
+  /* Ensure content fits on page */
+  .rounded-2xl,
+  .rounded-xl,
+  .rounded-lg {
+    border-radius: 0 !important;
+    border: 1px solid #e5e7eb !important;
+  }
+
+  /* Page breaks */
+  .page-break-before {
+    page-break-before: always;
+  }
+
+  .page-break-after {
+    page-break-after: always;
+  }
+
+  .page-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+
+  /* Optimize spacing */
+  .p-6,
+  .p-4 {
+    padding: 1rem !important;
+  }
+
+  .mb-6,
+  .mb-4 {
+    margin-bottom: 1rem !important;
+  }
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  button, a {
+    touch-action: manipulation;
+  }
+  
+  /* Focus indicators for accessibility */
+  *:focus-visible {
+    outline: 2px solid #0071E3;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid #0071E3;
+    outline-offset: 2px;
+  }
+  
+  :root {
+    --radius: 0.5rem
+  ;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%}
+  .dark {
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%
+  }
+}
+

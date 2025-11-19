@@ -33,6 +33,7 @@ export class BackupManager {
       localStorage.setItem(BACKUP_STORAGE_KEY, JSON.stringify(trimmed))
     } catch (error) {
       console.error('Failed to save backups:', error)
+      throw new Error('Failed to save backup. Storage may be full.')
     }
   }
 

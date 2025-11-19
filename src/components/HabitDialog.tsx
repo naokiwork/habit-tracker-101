@@ -33,6 +33,9 @@ export function HabitDialog({ onAddHabit, onEditHabit, habit, open: controlledOp
   const [reminders, setReminders] = useState<string[]>(habit?.reminders || [])
   const [newReminderTime, setNewReminderTime] = useState<string>('09:00')
   const [description, setDescription] = useState<string>(habit?.description || '')
+  const [category, setCategory] = useState<string>(habit?.category || '')
+  const [tags, setTags] = useState<string[]>(habit?.tags || [])
+  const [newTag, setNewTag] = useState<string>('')
 
   useEffect(() => {
     if (habit && isOpen) {
@@ -45,6 +48,8 @@ export function HabitDialog({ onAddHabit, onEditHabit, habit, open: controlledOp
       setReminderEnabled(habit.reminderEnabled || false)
       setReminders(habit.reminders || [])
       setDescription(habit.description || '')
+      setCategory(habit.category || '')
+      setTags(habit.tags || [])
     }
   }, [habit, isOpen])
 
@@ -65,6 +70,8 @@ export function HabitDialog({ onAddHabit, onEditHabit, habit, open: controlledOp
         reminderEnabled,
         reminders: reminderEnabled ? reminders : [],
         description: description.trim() || undefined,
+        category: category.trim() || undefined,
+        tags: tags.length > 0 ? tags : undefined,
       })
     } else {
       onAddHabit({
@@ -77,6 +84,8 @@ export function HabitDialog({ onAddHabit, onEditHabit, habit, open: controlledOp
         reminderEnabled,
         reminders: reminderEnabled ? reminders : [],
         description: description.trim() || undefined,
+        category: category.trim() || undefined,
+        tags: tags.length > 0 ? tags : undefined,
       })
     }
 
@@ -118,17 +127,6 @@ export function HabitDialog({ onAddHabit, onEditHabit, habit, open: controlledOp
     setTags(tags.filter(t => t !== tag))
   }
 
-  const addTag = () => {
-    if (newTag.trim() && !tags.includes(newTag.trim())) {
-      setTags([...tags, newTag.trim()])
-      setNewTag('')
-    }
-  }
-
-  const removeTag = (tag: string) => {
-    setTags(tags.filter(t => t !== tag))
-  }
-
   const handleOpenChange = (open: boolean) => {
     setIsOpen(open)
     if (open && habit) {
@@ -141,6 +139,8 @@ export function HabitDialog({ onAddHabit, onEditHabit, habit, open: controlledOp
       setReminderEnabled(habit.reminderEnabled || false)
       setReminders(habit.reminders || [])
       setDescription(habit.description || '')
+      setCategory(habit.category || '')
+      setTags(habit.tags || [])
     } else if (!open) {
       setName('')
       setSelectedEmoji(EMOJIS[0])
@@ -152,6 +152,9 @@ export function HabitDialog({ onAddHabit, onEditHabit, habit, open: controlledOp
       setReminders([])
       setNewReminderTime('09:00')
       setDescription('')
+      setCategory('')
+      setTags([])
+      setNewTag('')
     }
   }
 

@@ -13,13 +13,9 @@ import { EmptyState } from '@/components/EmptyState'
 import { Confetti } from '@/components/Confetti'
 import { ExportImport } from '@/components/ExportImport'
 import { IntegrationSettings } from '@/components/IntegrationSettings'
-import { ShareDialog } from '@/components/ShareDialog'
 import { SplitView } from '@/components/SplitView'
 import { MinimalView } from '@/components/MinimalView'
 import { FocusMode } from '@/components/FocusMode'
-import { GroupView } from '@/components/GroupView'
-import { CalendarView } from '@/components/CalendarView'
-import { TimelineView } from '@/components/TimelineView'
 import { ArchiveView } from '@/components/ArchiveView'
 import { FilterBar } from '@/components/FilterBar'
 import { TemplateDialog } from '@/components/TemplateDialog'
@@ -27,12 +23,16 @@ import { BackupView } from '@/components/BackupView'
 import { AchievementNotification } from '@/components/AchievementNotification'
 import { OfflineIndicator } from '@/components/OfflineIndicator'
 import { startAutoBackup, stopAutoBackup } from '@/utils/backup-manager'
+import { AchievementDetector, type Achievement } from '@/utils/achievement-detector'
+import { HabitHistoryManager } from '@/utils/habit-history-manager'
+import { addProgress, getUserProgress } from '@/utils/gamification'
 import { Spinner } from '@/components/ui/spinner'
 
 // Lazy load StatsPanel for better performance
 const StatsPanel = lazy(() => import('@/components/StatsPanel').then(module => ({ default: module.StatsPanel })))
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { LanguageSelector } from '@/components/LanguageSelector'
 import { KeyboardShortcuts } from '@/components/KeyboardShortcuts'
 import { Toaster } from '@/components/ui/toaster'
 import { validateStartupData } from '@/utils/data-integrity'
@@ -75,13 +75,17 @@ function App() {
   const [showSplitView, setShowSplitView] = useState(false)
   const [showTemplates, setShowTemplates] = useState(false)
   const [showBackup, setShowBackup] = useState(false)
-  const [viewMode, setViewMode] = useState<'default' | 'minimal' | 'focus'>('default')
+  const [viewMode, setViewMode] = useState<'default' | 'minimal' | 'focus' | 'group'>('default')
   const [focusHabitId, setFocusHabitId] = useState<string | null>(null)
   const [editingHabit, setEditingHabit] = useState<Habit | null>(null)
   const [deletingHabitId, setDeletingHabitId] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [searchQuery, setSearchQuery] = useState<string>('')
+  const [currentAchievement, setCurrentAchievement] = useState<Achievement | null>(null)
+  const [achievementQueue, setAchievementQueue] = useState<Achievement[]>([])
+  const [previousStreaks, setPreviousStreaks] = useState<Map<string, number>>(new Map())
+  const [previousGoalProgress, setPreviousGoalProgress] = useState<Map<string, { completed: number; target: number; percentage: number }>>(new Map())
   const isMobile = useIsMobile()
   
   // Filter out archived habits for main view, apply filters, and sort by order
@@ -194,6 +198,50 @@ function App() {
 
   const { getTotalCompletionRate, streakMap, completionMap, getStreak, getCompletionRate, getGoalProgress } =
     useHabitStats(activeHabits, entries, currentWeekStart)
+
+  // Detect achievements
+  useEffect(() => {
+    activeHabits.forEach((habit) => {
+      const currentStreak = getStreak(habit.id)
+      const previousStreak = previousStreaks.get(habit.id) || 0
+      const currentProgress = getGoalProgress(habit.id)
+      const previousProgress = previousGoalProgress.get(habit.id)
+
+      if (currentStreak > previousStreak || (currentProgress && currentProgress.percentage >= 100 && (!previousProgress || previousProgress.percentage < 100))) {
+        const achievements = AchievementDetector.detectAchievements(
+          habit,
+          entries,
+          previousStreak,
+          currentStreak,
+          previousProgress,
+          currentProgress
+        )
+
+        if (achievements.length > 0) {
+          setAchievementQueue(prev => [...prev, ...achievements])
+        }
+      }
+    })
+
+    // Update previous values
+    const newStreaks = new Map<string, number>()
+    const newProgress = new Map<string, { completed: number; target: number; percentage: number }>()
+    activeHabits.forEach((habit) => {
+      newStreaks.set(habit.id, getStreak(habit.id))
+      newProgress.set(habit.id, getGoalProgress(habit.id))
+    })
+    setPreviousStreaks(newStreaks)
+    setPreviousGoalProgress(newProgress)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeHabits, entries, getStreak, getGoalProgress])
+
+  // Process achievement queue
+  useEffect(() => {
+    if (achievementQueue.length > 0 && !currentAchievement) {
+      setCurrentAchievement(achievementQueue[0])
+      setAchievementQueue(prev => prev.slice(1))
+    }
+  }, [achievementQueue, currentAchievement])
 
   const handleAddHabit = useCallback(
     (habitData: Omit<Habit, 'id' | 'createdAt' | 'order'>) => {
@@ -498,7 +546,16 @@ function App() {
       <Toaster />
       <AchievementNotification
         achievement={currentAchievement}
-        onClose={() => setCurrentAchievement(null)}
+        onClose={useCallback(() => {
+          setCurrentAchievement(null)
+          // Show next achievement if queue is not empty
+          if (achievementQueue.length > 0) {
+            setTimeout(() => {
+              setCurrentAchievement(achievementQueue[0])
+              setAchievementQueue(prev => prev.slice(1))
+            }, 500)
+          }
+        }, [achievementQueue])}
       />
       <OfflineIndicator />
       <div className="min-h-screen bg-white dark:bg-zinc-900 transition-colors duration-200">

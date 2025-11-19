@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { TrendingUp, Calendar, Target, Download } from 'lucide-react'
+import { TrendingUp, Target, Download, Printer } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
@@ -10,7 +10,15 @@ import { ComparisonChart } from './ComparisonChart'
 import { TrendChart as TrendChartNew } from './TrendChart'
 import { HeatmapView } from './HeatmapView'
 import { InsightsPanel } from './InsightsPanel'
-import { useTrendAnalysis } from '@/hooks/use-trend-analysis'
+import { StatsDashboard } from './StatsDashboard'
+import { BenchmarkChart } from './BenchmarkChart'
+import { GoalAnalysisView } from './GoalAnalysisView'
+import { CorrelationMatrix } from './CorrelationMatrix'
+import { PatternChart } from './PatternChart'
+import { GamificationPanel } from './GamificationPanel'
+import { HabitChainView } from './HabitChainView'
+import { InteractiveChart } from './InteractiveChart'
+import { ReportView } from './ReportView'
 import type { Habit, HabitEntry } from '@/types/habit'
 import { getUtcKeyForLocalDay } from '@/lib/utils'
 import { useHabitStats } from '@/hooks/use-habit-stats'
@@ -110,8 +118,6 @@ export function StatsPanel({ habits, entries, onUpdateHabits }: StatsPanelProps)
     window.print()
   }
 
-  const { trendData, trendAnalysis, predictions } = useTrendAnalysis(habits, entries, selectedPeriod)
-
   return (
     <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-200 dark:border-zinc-800 p-6 animate-fade-in transition-colors duration-200">
       <div className="flex items-center justify-between mb-6">
@@ -144,7 +150,6 @@ export function StatsPanel({ habits, entries, onUpdateHabits }: StatsPanelProps)
             <Printer className="w-4 h-4" />
             Print
           </Button>
-          <div className="flex items-center gap-2">
           <Select value={periodPreset} onValueChange={(value) => setPeriodPreset(value as PeriodPreset)}>
             <SelectTrigger className="w-32">
               <SelectValue />
@@ -272,51 +277,6 @@ export function StatsPanel({ habits, entries, onUpdateHabits }: StatsPanelProps)
         
         <TabsContent value="comparison">
           <ComparisonChart habits={habits} entries={entries} weeks={8} />
-        </TabsContent>
-        
-        <TabsContent value="trend">
-          <div className="space-y-4">
-            {habits.map(habit => {
-              const data = trendData.get(habit.id) || []
-              const analysis = trendAnalysis.get(habit.id)
-              const prediction = predictions.get(habit.id)
-              
-              if (!analysis) return null
-              
-              return (
-                <div key={habit.id} className="space-y-4">
-                  <TrendChart habit={habit} trendData={data} trendAnalysis={analysis} />
-                  {prediction && (
-                    <div className="p-4 bg-gray-50 dark:bg-zinc-800 rounded-lg">
-                      <h4 className="font-semibold mb-2 text-[#1D1D1F] dark:text-zinc-50">Prediction (Next 7 Days)</h4>
-                      <div className="grid grid-cols-3 gap-4 text-sm">
-                        <div>
-                          <span className="text-gray-600 dark:text-zinc-400">Predicted Rate:</span>
-                          <span className="ml-2 font-semibold text-[#1D1D1F] dark:text-zinc-50">
-                            {prediction.predictedCompletionRate.toFixed(1)}%
-                          </span>
-                        </div>
-                        {prediction.daysToGoal && (
-                          <div>
-                            <span className="text-gray-600 dark:text-zinc-400">Days to Goal:</span>
-                            <span className="ml-2 font-semibold text-[#1D1D1F] dark:text-zinc-50">
-                              {prediction.daysToGoal}
-                            </span>
-                          </div>
-                        )}
-                        <div>
-                          <span className="text-gray-600 dark:text-zinc-400">Confidence:</span>
-                          <span className="ml-2 font-semibold text-[#1D1D1F] dark:text-zinc-50">
-                            {(prediction.confidence * 100).toFixed(0)}%
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )
-            })}
-          </div>
         </TabsContent>
         
         <TabsContent value="insights">

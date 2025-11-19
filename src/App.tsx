@@ -243,6 +243,17 @@ function App() {
     }
   }, [achievementQueue, currentAchievement])
 
+  const handleAchievementClose = useCallback(() => {
+    setCurrentAchievement(null)
+    // Show next achievement if queue is not empty
+    if (achievementQueue.length > 0) {
+      setTimeout(() => {
+        setCurrentAchievement(achievementQueue[0])
+        setAchievementQueue(prev => prev.slice(1))
+      }, 500)
+    }
+  }, [achievementQueue])
+
   const handleAddHabit = useCallback(
     (habitData: Omit<Habit, 'id' | 'createdAt' | 'order'>) => {
       const newHabit: Habit = {
@@ -546,16 +557,7 @@ function App() {
       <Toaster />
       <AchievementNotification
         achievement={currentAchievement}
-        onClose={useCallback(() => {
-          setCurrentAchievement(null)
-          // Show next achievement if queue is not empty
-          if (achievementQueue.length > 0) {
-            setTimeout(() => {
-              setCurrentAchievement(achievementQueue[0])
-              setAchievementQueue(prev => prev.slice(1))
-            }, 500)
-          }
-        }, [achievementQueue])}
+        onClose={handleAchievementClose}
       />
       <OfflineIndicator />
       <div className="min-h-screen bg-white dark:bg-zinc-900 transition-colors duration-200">

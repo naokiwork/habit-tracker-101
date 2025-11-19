@@ -4,9 +4,10 @@ interface AnimatedCounterProps {
   value: number
   duration?: number
   className?: string
+  style?: React.CSSProperties
 }
 
-export function AnimatedCounter({ value, duration = 500, className }: AnimatedCounterProps) {
+export function AnimatedCounter({ value, duration = 500, className, style }: AnimatedCounterProps) {
   const [displayValue, setDisplayValue] = useState(value)
 
   useEffect(() => {
@@ -37,6 +38,6 @@ export function AnimatedCounter({ value, duration = 500, className }: AnimatedCo
     requestAnimationFrame(animate)
   }, [value, displayValue, duration])
 
-  return <span className={className}>{displayValue}</span>
+  return <span className={className} style={style}>{displayValue}</span>
 }
 

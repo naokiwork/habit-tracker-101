@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import type { Habit, HabitEntry } from '@/types/habit'
 import { analyzeTrend, getTrendData, type TrendAnalysis, type TrendData } from '@/utils/trend-analysis'
-import { predictFutureCompletionRate, type Prediction } from '@/utils/prediction'
+import { predictFutureCompletion, type Prediction } from '@/utils/prediction'
 
 export function useTrendAnalysis(
   habits: Habit[],
@@ -27,7 +27,7 @@ export function useTrendAnalysis(
   const predictions = useMemo(() => {
     const preds: Map<string, Prediction> = new Map()
     habits.forEach(habit => {
-      preds.set(habit.id, predictFutureCompletionRate(habit.id, entries, days, 7))
+      preds.set(habit.id, predictFutureCompletion(habit.id, entries, 7, days))
     })
     return preds
   }, [habits, entries, days])

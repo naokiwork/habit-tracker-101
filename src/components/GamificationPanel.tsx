@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react'
-import { Trophy, Star, Award, Target, TrendingUp } from 'lucide-react'
+import { Trophy, Star, Target, TrendingUp } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   getUserProgress,
-  saveUserProgress,
   createChallenge,
-  type UserProgress,
-  type Challenge,
 } from '@/utils/gamification'
+import type { UserProgress } from '@/types/challenge'
 import type { Habit } from '@/types/habit'
 
 interface GamificationPanelProps {

@@ -20,8 +20,8 @@ import {
   calculateChainStats,
   analyzeChainEffects,
   getChainHabits,
-  type HabitChain,
 } from '@/utils/chain-analysis'
+import type { HabitChain } from '@/types/chain'
 import type { Habit, HabitEntry } from '@/types/habit'
 
 interface HabitChainViewProps {

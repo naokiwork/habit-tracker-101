@@ -1,4 +1,3 @@
-import type { Omit } from '@/types/habit'
 
 export interface HabitTemplate {
   name: string

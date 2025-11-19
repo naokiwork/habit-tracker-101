@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { calculateBenchmark, findBestPeriod, type BenchmarkData } from '@/utils/benchmark-analysis'
+import { calculateBenchmark, findBestPeriod } from '@/utils/benchmark-analysis'
 import type { Habit, HabitEntry } from '@/types/habit'
 
 interface BenchmarkChartProps {

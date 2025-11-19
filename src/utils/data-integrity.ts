@@ -42,7 +42,7 @@ export function validateAndFixData(
       }
       fixedHabits.push(fixedHabit)
     } else {
-      errors.push(`Habit at index ${index} is invalid: ${result.error.errors.map(e => e.message).join(', ')}`)
+      errors.push(`Habit at index ${index} is invalid: ${result.error.issues.map(e => e.message).join(', ')}`)
     }
   })
 

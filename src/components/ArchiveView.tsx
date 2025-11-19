@@ -69,7 +69,7 @@ export function ArchiveView({
         {habits.map((habit) => {
           const streak = streakMap.get(habit.id) ?? 0
           const completionRate = completionMap.get(habit.id) ?? 0
-          const goalProgress = getGoalProgress(habit)
+          const goalProgress = getGoalProgress(habit.id)
 
           return (
             <div

@@ -23,7 +23,6 @@ interface HabitCardProps {
 
 function HabitCardComponent({ habit, streak, completionRate, goalProgress, onEditHabit, onDeleteHabit }: HabitCardProps) {
   const goalType = habit.goalType || 'daily'
-  const goalValue = habit.goalValue || 1
   return (
     <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-200 dark:border-zinc-800 p-6 hover-lift transition-all-smooth animate-fade-in transition-colors duration-200">
       <div className="flex items-center gap-3 mb-4">

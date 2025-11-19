@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react'
-import { Download, Share2, Calendar, FileText } from 'lucide-react'
+import { Download, Share2, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { generateReport, exportReportAsText, exportReportAsJSON, type ReportData } from '@/utils/report-generator'
+import { generateReport, exportReportAsText, exportReportAsJSON } from '@/utils/report-generator'
 import { useToast } from '@/hooks/use-toast'
 import type { Habit, HabitEntry } from '@/types/habit'
 

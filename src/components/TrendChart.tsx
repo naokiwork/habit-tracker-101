@@ -3,10 +3,9 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react'
-import { getTrendData, analyzeTrend, type TrendAnalysis } from '@/utils/trend-analysis'
-import { predictFutureCompletion, predictDaysToGoal, type Prediction } from '@/utils/prediction'
+import { getTrendData, analyzeTrend } from '@/utils/trend-analysis'
+import { predictFutureCompletion, predictDaysToGoal } from '@/utils/prediction'
 import type { Habit, HabitEntry } from '@/types/habit'
-import { formatDateUTC } from '@/lib/utils'
 
 interface TrendChartProps {
   habits: Habit[]
@@ -54,7 +53,7 @@ export function TrendChart({ habits, entries }: TrendChartProps) {
                   <YAxis domain={[0, 100]} />
                   <Tooltip />
                   <Legend />
-                  {habits.map((habit, index) => {
+                  {habits.map((habit) => {
                     const trendData = getTrendData(habit.id, entries, 30)
                     return (
                       <Line

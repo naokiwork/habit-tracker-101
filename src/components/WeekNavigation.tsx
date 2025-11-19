@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { formatDateUTC, getUtcWeekDates, getUtcWeekStart, isSameUtcDay } from '@/lib/utils'
+import { getUtcWeekDates, getUtcWeekStart, isSameUtcDay } from '@/lib/utils'
 
 interface WeekNavigationProps {
   weekStart: Date

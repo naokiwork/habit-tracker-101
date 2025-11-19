@@ -120,7 +120,6 @@ export function CalendarView({ habits, entries, onDateClick }: CalendarViewProps
         ))}
 
         {days.map(({ date, isCurrentMonth }, index) => {
-          const dateStr = getUtcKeyForLocalDay(date)
           const completionCount = getDateCompletionCount(date)
           const totalHabits = habits.length
           const completionRate = totalHabits > 0 ? (completionCount / totalHabits) * 100 : 0

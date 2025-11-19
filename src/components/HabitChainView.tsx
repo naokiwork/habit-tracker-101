@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { Link2, Plus, Trash2, Edit2, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -18,7 +18,6 @@ import {
   updateChain,
   deleteChain,
   calculateChainStats,
-  analyzeChainEffects,
   getChainHabits,
 } from '@/utils/chain-analysis'
 import type { HabitChain } from '@/types/chain'

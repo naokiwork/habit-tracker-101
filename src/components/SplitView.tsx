@@ -12,7 +12,7 @@ interface SplitViewProps {
   onClose?: () => void
 }
 
-export function SplitView({ habits, entries, leftPanel, rightPanel, onClose }: SplitViewProps) {
+export function SplitView({ leftPanel, rightPanel, onClose }: SplitViewProps) {
   const [isMinimized, setIsMinimized] = useState(false)
 
   return (

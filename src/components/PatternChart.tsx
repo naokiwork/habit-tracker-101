@@ -55,7 +55,7 @@ export function PatternChart({ habits, entries }: PatternChartProps) {
                   <YAxis domain={[0, 100]} />
                   <Tooltip />
                   <Legend />
-                  {habits.map((habit, index) => (
+                  {habits.map((habit) => (
                     <Bar
                       key={habit.id}
                       dataKey="completionRate"

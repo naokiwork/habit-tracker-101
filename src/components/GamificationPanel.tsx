@@ -35,7 +35,7 @@ export function GamificationPanel({ habits }: GamificationPanelProps) {
   const handleCreateChallenge = () => {
     if (!newChallengeName || newChallengeTarget <= 0) return
 
-    const challenge = createChallenge({
+    createChallenge({
       name: newChallengeName,
       type: 'custom',
       target: newChallengeTarget,

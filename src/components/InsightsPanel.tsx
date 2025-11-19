@@ -10,7 +10,6 @@ import {
   analyzeTrends,
   getWeeklyInsights,
   type Insight,
-  type Recommendation,
 } from '@/utils/ai-analysis'
 import type { Habit, HabitEntry } from '@/types/habit'
 

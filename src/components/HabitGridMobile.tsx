@@ -1,4 +1,3 @@
-import { useState, useRef } from 'react'
 import { CheckCircle2, Minus, MoreVertical, Pencil, Trash2, RotateCcw, Archive } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {

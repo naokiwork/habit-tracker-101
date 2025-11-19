@@ -1,5 +1,4 @@
 import type { Habit, HabitEntry } from '@/types/habit'
-import { getUtcKeyForLocalDay } from '@/lib/utils'
 
 export interface BatchOperation {
   type: 'mark-done' | 'mark-skip' | 'reset'
@@ -34,8 +33,8 @@ export function applyBatchOperation(
 
 export function getSelectedCells(
   selectedCells: Set<string>,
-  habits: Habit[],
-  weekDates: Date[]
+  _habits: Habit[],
+  _weekDates: Date[]
 ): { habitIds: string[]; dateStrs: string[] } {
   const habitIds = new Set<string>()
   const dateStrs = new Set<string>()

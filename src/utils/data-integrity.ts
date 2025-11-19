@@ -1,5 +1,5 @@
 import type { Habit, HabitEntry } from '@/types/habit'
-import { habitSchema, habitEntrySchema } from '@/types/habit-validation'
+import { habitSchema } from '@/types/habit-validation'
 
 export interface DataIntegrityResult {
   isValid: boolean

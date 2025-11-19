@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
-import { X, Plus, Settings } from 'lucide-react'
+import { X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Select,
@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { getLayouts, saveLayout, PRESET_LAYOUTS, type LayoutConfig } from '@/utils/layout-manager'
+import { getLayouts, PRESET_LAYOUTS, type LayoutConfig } from '@/utils/layout-manager'
 import type { Habit, HabitEntry } from '@/types/habit'
 
 interface MultiPanelViewProps {
@@ -23,7 +23,7 @@ interface MultiPanelViewProps {
   onClose?: () => void
 }
 
-export function MultiPanelView({ habits, entries, panels, onClose }: MultiPanelViewProps) {
+export function MultiPanelView({ panels, onClose }: MultiPanelViewProps) {
   const [selectedLayout, setSelectedLayout] = useState<string>('default')
   const [layouts] = useState<LayoutConfig[]>(getLayouts())
 

@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 
 interface SelectionState {
   startCell: { habitId: string; dateStr: string } | null

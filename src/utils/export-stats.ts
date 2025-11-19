@@ -37,9 +37,12 @@ export function exportStatsToCSV(
 ): string {
   const dates: string[] = []
   const currentDate = new Date(startDate)
-  while (currentDate <= endDate) {
+  currentDate.setUTCHours(0, 0, 0, 0)
+  const endDateUTC = new Date(endDate)
+  endDateUTC.setUTCHours(0, 0, 0, 0)
+  while (currentDate <= endDateUTC) {
     dates.push(getUtcKeyForLocalDay(currentDate))
-    currentDate.setDate(currentDate.getDate() + 1)
+    currentDate.setUTCDate(currentDate.getUTCDate() + 1)
   }
 
   const headers = ['Date', 'Habit', 'Status', 'Streak']
@@ -69,9 +72,12 @@ export function exportStatsToJSON(
 ): StatsExportData {
   const dates: string[] = []
   const currentDate = new Date(startDate)
-  while (currentDate <= endDate) {
+  currentDate.setUTCHours(0, 0, 0, 0)
+  const endDateUTC = new Date(endDate)
+  endDateUTC.setUTCHours(0, 0, 0, 0)
+  while (currentDate <= endDateUTC) {
     dates.push(getUtcKeyForLocalDay(currentDate))
-    currentDate.setDate(currentDate.getDate() + 1)
+    currentDate.setUTCDate(currentDate.getUTCDate() + 1)
   }
 
   const stats: StatsExportData['stats'] = []
@@ -123,10 +129,11 @@ export function exportStatsToJSON(
 function calculateStreak(habitId: string, entries: HabitEntry, upToDate: string): number {
   let streak = 0
   const date = new Date(upToDate + 'T00:00:00Z')
+  date.setUTCHours(0, 0, 0, 0)
   
   for (let i = 0; i < 730; i++) {
     const checkDate = new Date(date)
-    checkDate.setDate(date.getDate() - i)
+    checkDate.setUTCDate(date.getUTCDate() - i)
     const dateStr = getUtcKeyForLocalDay(checkDate)
     const status = entries[dateStr]?.[habitId]
     

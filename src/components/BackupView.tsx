@@ -30,22 +30,46 @@ export function BackupView({ habits, entries, onRestore, onPartialRestore }: Bac
   })
 
   const handleCreateBackup = () => {
-    const backup = BackupManager.createBackup(habits, entries)
-    setBackups(BackupManager.getAllBackups())
-    toast({
-      title: 'Backup created',
-      description: `Backup created at ${new Date(backup.timestamp).toLocaleString()}`,
-    })
+    try {
+      const backup = BackupManager.createBackup(habits, entries)
+      setBackups(BackupManager.getAllBackups())
+      toast({
+        title: 'Backup created',
+        description: `Backup created at ${new Date(backup.timestamp).toLocaleString()}`,
+      })
+    } catch (error) {
+      toast({
+        title: 'Backup failed',
+        description: error instanceof Error ? error.message : 'Failed to create backup. Storage may be full.',
+        variant: 'destructive',
+      })
+    }
   }
 
   const handleDeleteBackup = (id: string) => {
     if (confirm('Are you sure you want to delete this backup?')) {
-      BackupManager.deleteBackup(id)
-      setBackups(BackupManager.getAllBackups())
-      toast({
-        title: 'Backup deleted',
-        description: 'The backup has been permanently deleted.',
-      })
+      try {
+        const deleted = BackupManager.deleteBackup(id)
+        if (deleted) {
+          setBackups(BackupManager.getAllBackups())
+          toast({
+            title: 'Backup deleted',
+            description: 'The backup has been permanently deleted.',
+          })
+        } else {
+          toast({
+            title: 'Delete failed',
+            description: 'Backup not found or could not be deleted.',
+            variant: 'destructive',
+          })
+        }
+      } catch (error) {
+        toast({
+          title: 'Delete failed',
+          description: error instanceof Error ? error.message : 'Failed to delete backup.',
+          variant: 'destructive',
+        })
+      }
     }
   }
 
@@ -54,24 +78,44 @@ export function BackupView({ habits, entries, onRestore, onPartialRestore }: Bac
   }
 
   const handleRestore = (backup: Backup, partial?: { habits?: boolean; entries?: boolean }) => {
-    if (partial) {
-      const restored = BackupManager.restorePartial(backup.id, partial)
-      if (restored && onPartialRestore) {
-        onPartialRestore(restored.habits, restored.entries)
-        toast({
-          title: 'Partial restore completed',
-          description: 'Selected data has been restored.',
-        })
+    try {
+      if (partial) {
+        const restored = BackupManager.restorePartial(backup.id, partial)
+        if (restored && onPartialRestore) {
+          onPartialRestore(restored.habits, restored.entries)
+          toast({
+            title: 'Partial restore completed',
+            description: 'Selected data has been restored.',
+          })
+        } else {
+          toast({
+            title: 'Restore failed',
+            description: 'Failed to restore backup data.',
+            variant: 'destructive',
+          })
+        }
+      } else {
+        const restored = BackupManager.restoreBackup(backup.id)
+        if (restored) {
+          onRestore(restored.habits, restored.entries)
+          toast({
+            title: 'Restore completed',
+            description: 'All data has been restored from backup.',
+          })
+        } else {
+          toast({
+            title: 'Restore failed',
+            description: 'Backup not found or could not be restored.',
+            variant: 'destructive',
+          })
+        }
       }
-    } else {
-      const restored = BackupManager.restoreBackup(backup.id)
-      if (restored) {
-        onRestore(restored.habits, restored.entries)
-        toast({
-          title: 'Restore completed',
-          description: 'All data has been restored from backup.',
-        })
-      }
+    } catch (error) {
+      toast({
+        title: 'Restore failed',
+        description: error instanceof Error ? error.message : 'Failed to restore backup.',
+        variant: 'destructive',
+      })
     }
     setRestoreDialog({ open: false, backup: null })
   }

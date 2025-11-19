@@ -8,17 +8,6 @@ interface WeekNavigationProps {
 }
 
 export function WeekNavigation({ weekStart, onNavigate, onGoToToday }: WeekNavigationProps) {
-  const { handleTouchStart, handleTouchEnd } = useGestures()
-
-  const handleSwipe = (direction: 'left' | 'right' | 'up' | 'down') => {
-    if (direction === 'left') {
-      onNavigate('next')
-      triggerHapticFeedback('light')
-    } else if (direction === 'right') {
-      onNavigate('prev')
-      triggerHapticFeedback('light')
-    }
-  }
   const weekDates = getUtcWeekDates(weekStart)
   const isCurrentWeek = isSameUtcDay(weekStart, getUtcWeekStart(new Date()))
 
@@ -61,4 +50,3 @@ export function WeekNavigation({ weekStart, onNavigate, onGoToToday }: WeekNavig
     </div>
   )
 }
-

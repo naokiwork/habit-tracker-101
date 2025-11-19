@@ -1,0 +1,6 @@
+name = "habit-tracker-101"
+compatibility_date = "2024-01-01"
+
+[site]
+bucket = "./dist"
+

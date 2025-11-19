@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ChevronLeft, ChevronRight, CheckCircle2, Minus } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import type { Habit, HabitEntry } from '@/types/habit'
 import { getUtcKeyForLocalDay } from '@/lib/utils'
@@ -11,7 +11,7 @@ interface CalendarViewProps {
   onDateClick?: (date: Date) => void
 }
 
-export function CalendarView({ habits, entries, onSetHabitStatus, onDateClick }: CalendarViewProps) {
+export function CalendarView({ habits, entries, onDateClick }: CalendarViewProps) {
   const [currentMonth, setCurrentMonth] = useState(new Date())
 
   const year = currentMonth.getFullYear()

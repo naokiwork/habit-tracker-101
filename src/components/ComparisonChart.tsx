@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from 'recharts'
 import { getUtcWeekDates, getUtcKeyForLocalDay } from '@/lib/utils'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import type { Habit, HabitEntry } from '@/types/habit'
 
 interface ComparisonChartProps {

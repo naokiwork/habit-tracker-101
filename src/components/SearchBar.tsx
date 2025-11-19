@@ -1,9 +1,6 @@
-import { useState, useRef, useEffect } from 'react'
 import { Search, X } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { getSearchSuggestions } from '@/utils/search-highlight'
-import type { Habit } from '@/types/habit'
 
 interface SearchBarProps {
   searchQuery: string

@@ -23,7 +23,7 @@ export const habitEntrySchema = z.record(
   z.record(
     z.string(),
     z.enum(['done', 'skip'], {
-      errorMap: () => ({ message: 'Status must be "done" or "skip"' }),
+      message: 'Status must be "done" or "skip"',
     })
   )
 )

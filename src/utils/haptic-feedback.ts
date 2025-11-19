@@ -6,7 +6,7 @@ export function triggerHapticFeedback(pattern: 'light' | 'medium' | 'heavy' | 's
     return // Not supported
   }
 
-  const patterns: number[] = {
+  const patterns: Record<string, number[]> = {
     light: [10],
     medium: [20],
     heavy: [30],

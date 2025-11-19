@@ -1,4 +1,4 @@
-import type { Habit, HabitEntry } from '@/types/habit'
+import type { HabitEntry } from '@/types/habit'
 import { getUtcKeyForLocalDay } from '@/lib/utils'
 
 export interface TrendData {

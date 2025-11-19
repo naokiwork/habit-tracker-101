@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react'
 import { ChevronDown, ChevronRight, Folder } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { HabitCard } from './HabitCard'
 import type { Habit, HabitEntry } from '@/types/habit'
 
@@ -18,7 +17,6 @@ interface GroupViewProps {
 
 export function GroupView({
   habits,
-  entries,
   streakMap,
   completionMap,
   goalProgressMap,

@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { buildCorrelationMatrix, calculateAllCorrelations, type Correlation } from '@/utils/correlation-analysis'
+import { buildCorrelationMatrix, calculateAllCorrelations } from '@/utils/correlation-analysis'
 import type { Habit, HabitEntry } from '@/types/habit'
 
 interface CorrelationMatrixProps {

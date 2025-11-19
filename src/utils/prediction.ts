@@ -1,5 +1,4 @@
 import type { Habit, HabitEntry } from '@/types/habit'
-import { getUtcKeyForLocalDay } from '@/lib/utils'
 import { analyzeTrend, getTrendData } from './trend-analysis'
 
 export interface Prediction {
@@ -12,7 +11,7 @@ export interface Prediction {
 export function predictFutureCompletion(
   habitId: string,
   entries: HabitEntry,
-  daysAhead: number = 7,
+  _daysAhead: number = 7,
   lookbackDays: number = 30
 ): Prediction {
   const trend = analyzeTrend(habitId, entries, lookbackDays)

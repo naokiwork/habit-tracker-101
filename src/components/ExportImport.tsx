@@ -56,7 +56,7 @@ export function ExportImport({ habits, entries, onImport }: ExportImportProps) {
           const validationResult = exportDataSchema.safeParse(rawData)
           
           if (!validationResult.success) {
-            const errors = validationResult.error.errors
+            const errors = validationResult.error.issues
             const errorMessages = errors.map((e) => `${e.path.join('.')}: ${e.message}`).join('\n')
             toast({
               title: 'Invalid file format',

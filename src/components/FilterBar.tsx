@@ -36,7 +36,6 @@ export function FilterBar({
       <SearchBar 
         searchQuery={searchQuery} 
         onSearchChange={onSearchChange}
-        habits={habits}
       />
       
       <div className="flex items-center gap-2">

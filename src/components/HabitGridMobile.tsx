@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { CheckCircle2, Minus, MoreVertical, Pencil, Trash2, RotateCcw, Archive } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -22,10 +22,8 @@ import {
 } from '@/components/ui/tooltip'
 import { AnimatedCounter } from './AnimatedCounter'
 import { useRipple } from '@/hooks/use-ripple'
-import { useGestures } from '@/hooks/use-gestures'
-import { triggerHapticFeedback } from '@/utils/haptic-feedback'
 import type { Habit, HabitEntry } from '@/types/habit'
-import { formatDateUTC, getUtcKeyForLocalDay, getUtcWeekDates } from '@/lib/utils'
+import { getUtcKeyForLocalDay, getUtcWeekDates } from '@/lib/utils'
 
 interface HabitGridMobileProps {
   habits: Habit[]
@@ -162,8 +160,6 @@ export function HabitGridMobile({
                                     createRipple(e)
                                     onToggleHabit(habit.id, date)
                                   }}
-                                  aria-label={`${isDone ? 'Mark as not completed' : isSkipped ? 'Mark as completed' : 'Mark as completed'} ${habit.name} on ${formatDisplayDate(date)}`}
-                                  aria-pressed={isDone}
                                   className={`w-12 h-12 min-w-[48px] min-h-[48px] rounded-xl flex items-center justify-center transition-all-smooth active:scale-95 ripple-effect relative overflow-hidden touch-manipulation ${
                                       isDone
                                         ? 'shadow-md animate-scale-in'

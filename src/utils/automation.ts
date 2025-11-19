@@ -1,6 +1,6 @@
 import { triggerWebhooksForEvent } from './webhook-manager'
 import { sendToIFTTT, sendToZapier, sendToCustomAPI } from './external-apis'
-import type { Integration, IntegrationEvent } from '@/types/integration'
+import type { IntegrationEvent } from '@/types/integration'
 
 export interface AutomationRule {
   id: string

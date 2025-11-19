@@ -110,7 +110,7 @@ export function detectAnomalies(habits: Habit[], entries: HabitEntry): Insight[]
 // Generate recommendations
 export function generateRecommendations(
   habits: Habit[],
-  entries: HabitEntry,
+  _entries: HabitEntry,
   streaks: Map<string, number>,
   completionRates: Map<string, number>
 ): Recommendation[] {
@@ -120,7 +120,6 @@ export function generateRecommendations(
     const streak = streaks.get(habit.id) || 0
     const completionRate = completionRates.get(habit.id) || 0
     const goalType = habit.goalType || 'daily'
-    const goalValue = habit.goalValue || 1
 
     // Goal adjustment recommendations
     if (completionRate >= 90 && goalType === 'daily') {
@@ -224,7 +223,7 @@ export function analyzeTrends(habits: Habit[], entries: HabitEntry): Insight[] {
 // Get weekly insights summary
 export function getWeeklyInsights(
   habits: Habit[],
-  entries: HabitEntry,
+  _entries: HabitEntry,
   streaks: Map<string, number>,
   completionRates: Map<string, number>
 ): Insight[] {

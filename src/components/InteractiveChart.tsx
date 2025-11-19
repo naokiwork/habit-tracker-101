@@ -18,8 +18,7 @@ export function InteractiveChart({
   chartType = 'line',
   onDateClick 
 }: InteractiveChartProps) {
-  const [hoveredDate, setHoveredDate] = useState<string | null>(null)
-  const [selectedPeriod, setSelectedPeriod] = useState<{ start: number; end: number } | null>(null)
+  const [hoveredDate] = useState<string | null>(null)
 
   const data = useMemo(() => {
     const today = new Date()
@@ -56,7 +55,6 @@ export function InteractiveChart({
     }
   }
 
-  const ChartComponent = chartType === 'line' ? LineChart : BarChart
 
   return (
     <div className="space-y-4">
@@ -66,7 +64,7 @@ export function InteractiveChart({
         </h4>
         <div className="flex gap-2">
           <button
-            onClick={() => setSelectedPeriod(null)}
+            onClick={() => {}}
             className="px-3 py-1 text-sm border border-gray-200 dark:border-zinc-800 rounded-lg hover:bg-gray-50 dark:hover:bg-zinc-800"
           >
             Reset
@@ -97,7 +95,7 @@ export function InteractiveChart({
               labelStyle={{ color: '#1D1D1F' }}
             />
             <Legend />
-            {habits.map((habit, index) => (
+                  {habits.map((habit) => (
               <Line
                 key={habit.id}
                 type="monotone"

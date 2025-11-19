@@ -15,7 +15,7 @@ const MILESTONE_STREAKS = [7, 14, 30, 50, 100, 200, 365]
 export class AchievementDetector {
   static detectAchievements(
     habit: Habit,
-    entries: HabitEntry,
+    _entries: HabitEntry,
     previousStreak: number,
     currentStreak: number,
     previousGoalProgress?: { completed: number; target: number; percentage: number },

@@ -1,6 +1,4 @@
-import { useState } from 'react'
-import { CheckCircle2, Minus, X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { CheckCircle2, Minus } from 'lucide-react'
 import type { Habit, HabitEntry } from '@/types/habit'
 import { getUtcKeyForLocalDay, getUtcWeekDates } from '@/lib/utils'
 

@@ -112,7 +112,7 @@ export function StatsDashboard({ habits, entries, streaks, completionRates }: St
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="default">Default</SelectItem>
-              {PRESET_LAYOUTS.map((preset, index) => (
+              {PRESET_LAYOUTS.map((_preset, index) => (
                 <SelectItem key={index} value={index.toString()}>
                   Preset {index + 1}
                 </SelectItem>

@@ -110,7 +110,7 @@ export function analyzeChainEffects(
 // Calculate chain statistics
 export function calculateChainStats(
   chain: HabitChain,
-  habits: Habit[],
+  _habits: Habit[],
   entries: HabitEntry,
   days: number = 30
 ): ChainStats {
@@ -124,7 +124,7 @@ export function calculateChainStats(
   let completedDays = 0
   const breakPoints: number[] = []
 
-  dateRange.forEach((dateStr, dayIndex) => {
+  dateRange.forEach((dateStr) => {
     let allCompleted = true
     let firstIncomplete = -1
 

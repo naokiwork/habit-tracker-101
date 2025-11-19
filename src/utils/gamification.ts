@@ -5,13 +5,13 @@ import { getUtcKeyForLocalDay } from '@/lib/utils'
 const STORAGE_KEY = 'habitgrid-gamification'
 
 // Points calculation
-export function calculatePoints(habitId: string, entries: HabitEntry, date: string): number {
+export function calculatePoints(_habitId: string, _entries: HabitEntry, _date: string): number {
   // Base points for completion
   return 10
 }
 
 // Experience calculation
-export function calculateExperience(habitId: string, entries: HabitEntry, date: string): number {
+export function calculateExperience(_habitId: string, _entries: HabitEntry, _date: string): number {
   // Base experience for completion
   return 5
 }

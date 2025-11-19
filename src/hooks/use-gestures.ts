@@ -40,7 +40,7 @@ export function useGestures() {
       e: React.TouchEvent,
       onSwipe?: (direction: 'left' | 'right' | 'up' | 'down') => void,
       onTap?: () => void,
-      onDoubleTap?: () => void
+      _onDoubleTap?: () => void
     ) => {
       if (gestureState.current.longPressTimer) {
         clearTimeout(gestureState.current.longPressTimer)
@@ -83,7 +83,7 @@ export function useGestures() {
     []
   )
 
-  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+  const handleTouchMove = useCallback((_e: React.TouchEvent) => {
     // Cancel long press if user moves
     if (gestureState.current.longPressTimer) {
       clearTimeout(gestureState.current.longPressTimer)
